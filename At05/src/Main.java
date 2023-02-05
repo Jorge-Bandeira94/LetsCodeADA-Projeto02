@@ -1,25 +1,26 @@
 import models.*;
 import utils.*;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
     Scanner scanner = new Scanner(System.in);
-    HandlerFile handler = new HandlerFile();
     FolderMaker gerenciadorPastas = new FolderMaker();
     ArchiveMaker archive = new ArchiveMaker();
     String continuar = "s";
     String continuar2 = "s";
     String continuar3 = "s";
     String continuar4 = "s";
+    String continuar5 = "s";
     String menuInicial = "s";
 
     System.out.println(" Escolha o diretório para trabalho: ");
     String diretorios = scanner.nextLine();
 
     while(menuInicial.equals("s")){
-        System.out.println(" Qual ação deseja realizar? \n 1 - Gerenciar Pastas \n 2 - Gerenciar Arquivos \n 3 - Deletar arquivos \n 4 - Listar \n 5 - Sair");
+        System.out.println(" Qual ação deseja realizar? \n 1 - Gerenciar Pastas \n 2 - Gerenciar Arquivos \n 3 - Deletar arquivos \n 4 - Listar \n 5 - Ler arquivo \n 6 - Sair");
         scanner.nextInt();
         int opcaoInicial = scanner.nextInt();
         switch(opcaoInicial){
@@ -90,6 +91,17 @@ public class Main {
 
             }
             case 5 -> {
+                while(continuar5.equals("s")){
+                    ArchiveReader leitor = new ArchiveReader();
+                    leitor.lerArquivo(diretorios);
+                    System.out.println("Deseja continuar a ler arquivos? (s/n)");
+                    scanner.nextLine();
+                    continuar5 = scanner.nextLine().toLowerCase();
+
+
+                }
+            }
+            case 6 -> {
                 menuInicial = "N";
             }
             default -> {
