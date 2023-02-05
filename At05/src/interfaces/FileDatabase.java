@@ -6,7 +6,7 @@ public interface FileDatabase {
 
     void saveFile(String directory, String content, MFileAnnotationTypeEnum typeEnum, String nameFile);
 
-    void recoveryFile(String directory);
+    void recoveryFile(String directory) throws IOException;
 
     void removeFile(String directory, String nameFile, MFileAnnotationTypeEnum typeEnum);
 
