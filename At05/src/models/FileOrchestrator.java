@@ -16,7 +16,13 @@ public class FileOrchestrator extends FolderOrchestrator implements ImageFileDat
     @Override
     public void saveImageFile(String directory, String content, String nameFile) {
         try{
-            String dir = "image";
+            String dir = "images";
+            String diretorioCompleto = directory + "\\" + dir;
+            File diretorioFile = new File(diretorioCompleto);
+            if(!diretorioFile.exists()){
+                System.out.println("O diretório para este tipo de arquivo ainda não existe. Será criado agora");
+                diretorioFile.mkdir();
+            }
             BufferedImage image = null;
             URL url = new URL(content);
             image = ImageIO.read(url);
@@ -57,6 +63,12 @@ public class FileOrchestrator extends FolderOrchestrator implements ImageFileDat
        try{
             MFileAnnotationTypeEnum dir = typeEnum;
             String diretorioArquivo = dir.toString().toLowerCase();
+            String diretorioCompleto = directory + "\\" + diretorioArquivo + "s";
+            File diretorioFile = new File(diretorioCompleto);
+            if(!diretorioFile.exists()){
+                System.out.println("O diretório para este tipo de arquivo ainda não existe. Será criado agora");
+                diretorioFile.mkdir();
+            }
             if(diretorioArquivo.equals("simple")){
                 FileWriter texto = new FileWriter(directory + "\\" + nameFile + ".txt");
                 PrintWriter gravarTexto= new PrintWriter(texto);
