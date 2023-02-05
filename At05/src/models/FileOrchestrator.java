@@ -54,14 +54,22 @@ public class FileOrchestrator extends FolderOrchestrator implements ImageFileDat
 
     @Override
     public void saveFile(String directory, String content, MFileAnnotationTypeEnum typeEnum, String nameFile) {
-        try{
+       try{
             MFileAnnotationTypeEnum dir = typeEnum;
             String diretorioArquivo = dir.toString().toLowerCase();
-            FileWriter textoReminder = new FileWriter(directory + "\\" + dir + "s" + "\\" + nameFile + ".txt");
-            PrintWriter gravarTexto= new PrintWriter(textoReminder);
-            gravarTexto.printf(content);
-            textoReminder.close();
-            System.out.println("Arquivo do tipo: " + typeEnum + "  criado");
+            if(diretorioArquivo.equals("simple")){
+                FileWriter texto = new FileWriter(directory + "\\" + nameFile + ".txt");
+                PrintWriter gravarTexto= new PrintWriter(texto);
+                gravarTexto.printf(content);
+                texto.close();
+                System.out.println("Arquivo do tipo: " + typeEnum + "  criado");
+            } else {
+                FileWriter texto = new FileWriter(directory + "\\" + dir + "s" + "\\" + nameFile + ".txt");
+                PrintWriter gravarTexto= new PrintWriter(texto);
+                gravarTexto.printf(content);
+                texto.close();
+                System.out.println("Arquivo do tipo: " + typeEnum + "  criado");
+            }
         } catch (Exception e){
             System.out.println("Não foi possível criar este arquivo");
         }
