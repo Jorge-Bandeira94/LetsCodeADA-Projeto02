@@ -88,8 +88,20 @@ public class FileOrchestrator extends FolderOrchestrator implements ImageFileDat
     }
 
     @Override
-    public void recoveryFile(String directory) {
+    public void recoveryFile(String directory) throws IOException {
+        BufferedReader buffRead = new BufferedReader(new FileReader(directory));
+        String linha = "";
+        while (true) {
+            if (linha != null) {
+                System.out.println(linha);
+
+            } else
+                break;
+            linha = buffRead.readLine();
+        }
+        buffRead.close();{    
     }
+    
     @Override
     public void removeFile(String directory, String nameFile, MFileAnnotationTypeEnum typeEnum) {
         MFileAnnotationTypeEnum dir = typeEnum;
